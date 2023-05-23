@@ -6,9 +6,7 @@ import (
 	"database/sql"
 	"errors"
 	"fmt"
-	"github.com/google/uuid"
 	"log"
-	"time"
 )
 
 var (
@@ -46,7 +44,7 @@ func NewService(db *sql.DB, logger log.Logger) *UserRepoImpl {
 }
 
 func (s *UserRepoImpl) Create(ctx context.Context, user *entity.User) error {
-	_, err := s.db.Exec(create, user.ID, user.UserName, user.Password, user.Email, user.Telegram)
+	_, err := s.db.ExecContext(ctx, create, user.ID, user.UserName, user.Password, user.Email, user.Telegram)
 	if err != nil {
 		if err.Error() == conflictErrMessage {
 			return ErrorDuplicated
@@ -58,8 +56,7 @@ func (s *UserRepoImpl) Create(ctx context.Context, user *entity.User) error {
 }
 
 func (s *UserRepoImpl) Update(ctx context.Context, user *entity.User) error {
-	_, err := s.db.Exec(update, user.ID, user.UserName, user.Password, user.Email, user.Telegram)
-
+	_, err := s.db.ExecContext(ctx, update, user.ID, user.UserName, user.Password, user.Email, user.Telegram)
 	if err != nil {
 		return fmt.Errorf("%s %v", ErrorCantUpdate, err)
 	}
@@ -68,21 +65,22 @@ func (s *UserRepoImpl) Update(ctx context.Context, user *entity.User) error {
 }
 
 func (s *UserRepoImpl) GetById(ctx context.Context, id string) (error, *entity.User) {
-	_, err := s.db.Query(get, id)
-
+	res := s.db.QueryRowContext(ctx, get, id)
+	u := entity.User{}
+	err := res.Scan(&u.ID, &u.UserName, &u.Password, &u.Token, &u.Email, &u.Telegram, &u.CreatedAt, &u.UpdateAt)
 	if err != nil {
 		return fmt.Errorf("%s %v", ErrorCantGet, err), nil
 	}
 
 	return nil, &entity.User{
-		ID:        ,
-		UserName:  "",
-		Password:  "",
-		Token:     "",
-		Email:     "",
-		Telegram:  "",
-		CreatedAt: time.Time{},
-		UpdateAt:  time.Time{},
+		ID:        u.ID,
+		UserName:  u.UserName,
+		Password:  u.Password,
+		Token:     u.Token,
+		Email:     u.Email,
+		Telegram:  u.Telegram,
+		CreatedAt: u.CreatedAt,
+		UpdateAt:  u.UpdateAt,
 	}
 }
 
