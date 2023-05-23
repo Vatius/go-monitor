@@ -1,0 +1,12 @@
+{
+  "db": {
+    "host": "localhost",
+    "user": "postgres",
+    "password":  "1234",
+    "db_name": "postgres",
+    "port":  5432
+  },
+  "key": "bko8XvX",
+  "users_table_name": "users",
+  "http_port": 8000
+}
