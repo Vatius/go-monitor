@@ -33,7 +33,7 @@ CREATE TABLE alert
 (
     id uuid primary key ,
     check_id uuid ,
-    date timestamp without time zone default now(),
+    alert_date timestamp without time zone default now(),
     name varchar(255) ,
     description varchar(255),
     status alert_status ,

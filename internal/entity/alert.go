@@ -8,7 +8,7 @@ import (
 type Alert struct {
 	ID          uuid.UUID
 	CheckID     uuid.UUID
-	Date        time.Time
+	AlertDate   time.Time
 	Name        string
 	Description string
 	Status      string
