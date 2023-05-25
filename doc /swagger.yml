@@ -1,0 +1,24 @@
+swagger: '2.0'
+info:
+  title: GoMonitor API
+  description: Service for checking the status of other services
+  version: 0.1.0
+schemes: [ http ]
+consumes: [ application/json ]
+produces: [ application/json ]
+paths:
+  /health:
+    get:
+      tags: [ Technical ]
+      summary: 'Health check'
+      description: 'Проверка - жив ли сервис'
+      operationId: Health
+      responses:
+        200:
+          description: OK
+          schema:
+            type: integer
+            format: long
+            example: 123456789
+        500:
+          description: Internal Server Error
