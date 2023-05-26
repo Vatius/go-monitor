@@ -19,11 +19,11 @@ var (
 const (
 	checkListConflictErrMessage = "pq: duplicate key value violates unique constraint \"users_username_key\""
 	checkListCreate             = "INSERT INTO checklist (id,name,endpoint,description,status,icon,user_id) VALUES ($1, $2, $3, $4,$5,$6,$7);"
-	checkListUpdate             = "UPDATE checklist SET name = $2, endpoint = $3, descrition = $4, status = $5 WHERE id = $1 ;"
-	checkListDelete             = "DELETE FROM checklist WHERE id = $1 VALUES ($1)"
-	checkListGet                = "SELECT id,name,endpoint,description,status,last_update,icon,user_id,created_at,updated_at FROM checklist WHERE id = $1 "
-	checkListGetAll             = "SELECT id,name,endpoint,description,status,last_update,icon,user_id,created_at,updated_at FROM checklist  "
-	checkListGetAllByUserID     = "SELECT id,name,endpoint,description,status,last_update,icon,user_id,created_at,updated_at FROM checklist WHERE user_id = $1 "
+	checkListUpdate             = "UPDATE checklist SET name = $2, endpoint = $3, descrition = $4, status = $5 WHERE id = $1;"
+	checkListDelete             = "DELETE FROM checklist WHERE id = $1 VALUES ($1);"
+	checkListGet                = "SELECT id,name,endpoint,description,status,last_update,icon,user_id,created_at,updated_at FROM checklist WHERE id = $1;"
+	checkListGetAll             = "SELECT id,name,endpoint,description,status,last_update,icon,user_id,created_at,updated_at FROM checklist;"
+	checkListGetAllByUserID     = "SELECT id,name,endpoint,description,status,last_update,icon,user_id,created_at,updated_at FROM checklist WHERE user_id = $1;"
 )
 
 type (

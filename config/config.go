@@ -32,7 +32,11 @@ type (
 	// PG -.
 	PG struct {
 		//PoolMax int    `env-required:"true" yaml:"pool_max" env:"PG_POOL_MAX"`
-		URL string `env-required:"true"                 env:"PG_URL"`
+		Host     string `env-required:"true"                 env:"PG_HOST"`
+		Port     string `env-required:"true"                 env:"PG_PORT"`
+		User     string `env-required:"true"                 env:"PG_USER"`
+		Password string `env-required:"true"                 env:"PG_PASSWORD"`
+		DbName   string `env-required:"true"                 env:"PG_DBNAME"`
 	}
 )
 

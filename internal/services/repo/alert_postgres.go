@@ -18,13 +18,13 @@ var (
 
 const (
 	alertConflictErrMessage = "pq: duplicate key value violates unique constraint \"users_username_key\""
-	alertCreate             = "INSERT INTO alert (id,check_id,alert_date,name,description,status,created_at) VALUES ($1, $2, $3, $4,$5,$6,$7);"
-	alertUpdate             = "UPDATE alert SET name = $2, description = $3, status = $4 WHERE id = $1 ;"
-	alertDelete             = "DELETE FROM alert WHERE id = $1 VALUES ($1)"
-	alertGet                = "SELECT id,check_id,alert_date,name,description,status,created_at FROM alert WHERE id = $1 "
-	alertGetAll             = "SELECT id,check_id,alert_date,name,description,status,created_at FROM alert  "
-	alertGetAllByUserID     = "SELECT id,check_id,alert_date,name,description,status,created_at FROM alert WHERE user_id = $1"
-	alertGetAllByServiceID  = "SELECT id,check_id,alert_date,name,description,status,created_at FROM alert WHERE check_id = $1"
+	alertCreate             = "INSERT INTO alert (id,check_id,name,description,status) VALUES ($1, $2, $3, $4,$5,$6,$7);"
+	alertUpdate             = "UPDATE alert SET name = $2, description = $3, status = $4 WHERE id = $1;"
+	alertDelete             = "DELETE FROM alert WHERE id = $1 VALUES ($1);"
+	alertGet                = "SELECT id,check_id,alert_date,name,description,status,created_at FROM alert WHERE id = $1;"
+	alertGetAll             = "SELECT id,check_id,alert_date,name,description,status,created_at FROM alert; "
+	alertGetAllByUserID     = "SELECT id,check_id,alert_date,name,description,status,created_at FROM alert INNER JOIN checklist on alert.check_id=checklist.id AND WHERE user_id = $1;"
+	alertGetAllByServiceID  = "SELECT id,check_id,alert_date,name,description,status,created_at FROM alert WHERE check_id = $1;"
 )
 
 type AlertRepoImpl struct {

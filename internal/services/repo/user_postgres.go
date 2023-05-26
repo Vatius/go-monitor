@@ -25,10 +25,10 @@ var (
 const (
 	userConflictErrMessage = "pq: duplicate key value violates unique constraint \"users_username_key\""
 	userCreate             = "INSERT INTO users (id,username,password,email,telegramm) VALUES ($1, $2, $3, $4,$5);"
-	userUpdate             = "UPDATE users SET username = $2, password = $3, email = $4, telegramm = $5 WHERE id = $1 ;"
-	userDelete             = "DELETE FROM users WHERE id = $1 VALUES ($1)"
-	userGet                = "SELECT id,username,password,token,email,telegram,created_at,updated_at FROM users WHERE id = $1 "
-	userGetAll             = "SELECT id,username,password,token,email,telegram,created_at,updated_at FROM users "
+	userUpdate             = "UPDATE users SET username = $2, password = $3, email = $4, telegramm = $5 WHERE id = $1;"
+	userDelete             = "DELETE FROM users WHERE id = $1 VALUES ($1);"
+	userGet                = "SELECT id,username,password,token,email,telegram,created_at,updated_at FROM users WHERE id = $1;"
+	userGetAll             = "SELECT id,username,password,token,email,telegram,created_at,updated_at FROM users;"
 )
 
 type (
